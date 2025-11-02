@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Наши работы — Плитка Брянск</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Плитка Брянск</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О нас</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2 data-aos="fade-up">Мои работы</h2>
+    <p data-aos="fade-up" data-aos-delay="150" style="text-align: center; margin-bottom: 20px;">
+      Все фото — мои реальные объекты в Брянске. Никаких стоков.
+    </p>
+    <div class="categories" data-aos="fade-up" data-aos-delay="300">
+      <button class="category-btn active" data-category="all">Все</button>
+      <button class="category-btn" data-category="bath">Ванная</button>
+      <button class="category-btn" data-category="kitchen">Кухня</button>
+      <button class="category-btn" data-category="floor">Пол</button>
+      <button class="category-btn" data-category="shower">Душевая</button>
+      <button class="category-btn" data-category="mosaic">Мозаика</button>
+    </div>
+
+    <div id="all" class="works-section active">
+      <div class="work-item" style="background-image: url('img/work1.jpg');" onclick="openModal('img/work1.jpg')"><span>Ванная — 2024</span></div>
+      <div class="work-item" style="background-image: url('img/work2.jpg');" onclick="openModal('img/work2.jpg')"><span>Пол в коридоре</span></div>
+      <div class="work-item" style="background-image: url('img/work3.jpg');" onclick="openModal('img/work3.jpg')"><span>Угловая душевая</span></div>
+      <div class="work-item" style="background-image: url('img/work4.jpg');" onclick="openModal('img/work4.jpg')"><span>Роскошная ванная</span></div>
+      <div class="work-item" style="background-image: url('img/work5.jpg');" onclick="openModal('img/work5.jpg')"><span>Чёрная мозаика</span></div>
+    </div>
+
+    <div id="bath" class="works-section">
+      <div class="work-item" style="background-image: url('img/work1.jpg');" onclick="openModal('img/work1.jpg')"><span>Ванная — 2024</span></div>
+      <div class="work-item" style="background-image: url('img/work4.jpg');" onclick="openModal('img/work4.jpg')"><span>Роскошная ванная</span></div>
+    </div>
+
+    <div id="kitchen" class="works-section">
+      <div class="work-item" style="background-image: url('img/work2.jpg');" onclick="openModal('img/work2.jpg')"><span>Кухонный фартук</span></div>
+      <div class="work-item" style="background-image: url('img/work4.jpg');" onclick="openModal('img/work4.jpg')"><span>Пол на кухне</span></div>
+    </div>
+
+    <div id="floor" class="works-section">
+      <div class="work-item" style="background-image: url('img/work2.jpg');" onclick="openModal('img/work2.jpg')"><span>Тёплый пол + плитка</span></div>
+      <div class="work-item" style="background-image: url('img/work4.jpg');" onclick="openModal('img/work4.jpg')"><span>Керамогранит в коридоре</span></div>
+    </div>
+
+    <div id="shower" class="works-section">
+      <div class="work-item" style="background-image: url('img/work3.jpg');" onclick="openModal('img/work3.jpg')"><span>Безбордюрный душ</span></div>
+      <div class="work-item" style="background-image: url('img/work4.jpg');" onclick="openModal('img/work4.jpg')"><span>Душевая кабина в нише</span></div>
+    </div>
+
+    <div id="mosaic" class="works-section">
+      <div class="work-item" style="background-image: url('img/work5.jpg');" onclick="openModal('img/work5.jpg')"><span>Чёрная мозаика</span></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-img">
+  </div>
+
+  <footer>
+    &copy; 2025 Плитка Брянск — Марат. Все работы выполняю лично.
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    // Переключение категорий
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.category;
+        document.querySelectorAll('.works-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(cat).classList.add('active');
+      });
+    });
+
+    // Функции для модального окна
+    function openModal(imgSrc) {
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      modal.style.display = "block";
+      modalImg.src = imgSrc;
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = "none";
+    }
+
+    // Закрыть по клику вне изображения
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
